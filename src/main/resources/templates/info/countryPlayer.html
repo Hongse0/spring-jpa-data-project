@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>국가별 선수</title>
+</head>
+<body>
+    <h1>국가별 선수 조회</h1>
+    <form action="/info/search">
+      <select name="countryId" id="countryId">
+
+      </select><br>
+      <input type="submit" value="검색">
+    <script>
+      fetch('/info/countries')
+              .then(res => res.json())
+              .then(data => {
+                const countryIdSelect = document.getElementById('countryId');
+                console.log(countryIdSelect)
+                for(let index in data){
+                  const option = document.createElement('option');
+                  option.value = data[index].countriesId;
+                  option.textContent = data[index].countriesName;
+                  countryIdSelect.appendChild(option);
+                }
+              });
+    </script>
+    </form>
+
+</body>
+</html>

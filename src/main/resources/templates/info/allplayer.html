@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>전체 선수 목록</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>선수번호</th>
+        <th>선수이름</th>
+        <th>선수포지션</th>
+        <th>선수나이</th>
+        <th>선수 소속 팀</th>
+        <th>국가대표 출전 경기수</th>
+        <th>국가대표 득점</th>
+        <th>소속 국가 아이디</th>
+    </tr>
+    <tr th:each="players : ${ playerList }">
+        <td th:text="${ players.playerId }"></td>
+        <td th:text="${ players.playerName }"></td>
+        <td th:text="${ players.position }"></td>
+        <td th:text="${ players.age }"></td>
+        <td th:text="${ players.club }"></td>
+        <td th:text="${ players.caps }"></td>
+        <td th:text="${ players.goals }"></td>
+        <td th:text="${ players.countryId }"></td>
+    </tr>
+</table>
+
+</body>
+</html>
