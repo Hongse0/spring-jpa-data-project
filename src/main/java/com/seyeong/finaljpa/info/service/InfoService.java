@@ -8,6 +8,9 @@ import com.seyeong.finaljpa.info.repository.CountriesRepository;
 import com.seyeong.finaljpa.info.repository.PlayerRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +32,14 @@ public class InfoService {
     }
 
 
-    public List<PlayersDTO> findAllPlayers() {
+    public Page<PlayersDTO> findAllPlayers(Pageable pageable) {
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber()-1,
+                pageable.getPageSize(),
+                Sort.by("playerId").descending());
 
-        List<Players> playersList = playerRepository.findAll(Sort.by("playerId"));
+        Page<Players> playersList = playerRepository.findAll(pageable);
 
-        return  playersList.stream().map(players -> modelMapper.map(players, PlayersDTO.class))
-                .collect(Collectors.toList());
+        return  playersList.map(players -> modelMapper.map(players,PlayersDTO.class));
     }//전체 선수 조회
 
     public List<CountriesDTO> findCountryPlayer() {
