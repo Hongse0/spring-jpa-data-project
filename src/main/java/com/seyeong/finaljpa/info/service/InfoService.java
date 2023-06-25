@@ -70,4 +70,34 @@ public class InfoService {
         });
         playerRepository.save(modelMapper.map(player, Players.class));
     }
+
+    @Transactional
+    public void deletePlayer(String playerName) {
+
+        playerRepository.deleteByName(playerName);
+    }
+
+    @Transactional
+    public void modifyPlayer(PlayersDTO player) {
+        Players foundPlayer = playerRepository.findById(player.getPlayerId()).orElseThrow(IllegalArgumentException::new);
+
+        foundPlayer.setClub(player.getClub());
+        foundPlayer.setCaps(player.getCaps());
+        foundPlayer.setGoals(player.getGoals());
+    }
+
+    public PlayersDTO findByPlayerId(int playerId) {
+        Players player = playerRepository.findById(playerId).orElseThrow(IllegalArgumentException::new);
+
+
+        return modelMapper.map(player,PlayersDTO.class);
+    }
+
+    public List<CountriesDTO> findAllCountry() {
+        List<Countries> countriesList = countriesRepository.findAll(Sort.by("countriesId"));
+
+        return  countriesList.stream().map(country -> modelMapper.map(country, CountriesDTO.class))
+                .collect(Collectors.toList());
+
+    }
 }

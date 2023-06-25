@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>등록 국가 리스트</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>국가 아이디</th>
+    <th>국가 이름</th>
+    <th>대륙</th>
+  </tr>
+  <tr th:each="country : ${ countryList }">
+    <td th:text="${ country.countriesId }"></td>
+    <td th:text="${ country.countriesName }"></td>
+    <td th:text="${ country.continent }"></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -59,8 +59,46 @@ public class InfoController {
         infoService.registPlayers(player);
 
         return "redirect:/info/allplayer";
-
     }
+
+    @GetMapping("/deletePlayer")
+    public void deletePage(){}
+
+    @PostMapping("/delete")
+    public String deletePlayer(@RequestParam String playerName){
+        infoService.deletePlayer(playerName);
+        return "redirect:/info/allplayer";
+    }
+
+    @GetMapping("/modifyPlayer")
+    public void modifyPage(){}
+
+    @PostMapping("/modify")
+    public String modifyPlayer(PlayersDTO player){
+        infoService.modifyPlayer(player);
+
+        return "redirect:/info/"+player.getPlayerId();
+    }
+
+    @GetMapping("/{playerId}")
+    public String findByPlayerId(@PathVariable int playerId, Model model){
+        PlayersDTO player = infoService.findByPlayerId(playerId);
+        model.addAttribute("players",player);
+
+
+        return "info/onePlayer";
+    }
+
+    @GetMapping("/countryList")
+    public String allCountryList(Model model){
+
+        List<CountriesDTO> countries = infoService.findAllCountry();
+
+        model.addAttribute("countryList",countries);
+
+        return "info/countryList";
+    }
+
 
 
 }
