@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>수정된 선수 정보</title>
+  <meta charset="UTF-8">
+  <title>수정된 선수 정보</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 800px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
+<a href="/"><h1>선수 관리 프로그램</h1></a>
+<h2>수정된 선수 정보</h2>
 <table>
   <tr>
     <th>선수번호</th>
@@ -27,5 +70,6 @@
     <td th:text="${ players.countryId }"></td>
   </tr>
 </table>
+<a href="/">메인으로 이동</a>
 </body>
 </html>

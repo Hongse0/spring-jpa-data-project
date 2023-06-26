@@ -3,29 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <title>국가 선수 조회</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            margin: 0 auto;
+            width: 80%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #ddd;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e5e5e5;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
+<a href="/"><h1>선수 관리 프로그램</h1></a>
 <table>
-<tr>
-    <th>선수번호</th>
-    <th>선수이름</th>
-    <th>선수포지션</th>
-    <th>선수나이</th>
-    <th>선수 소속 팀</th>
-    <th>국가대표 출전 경기수</th>
-    <th>국가대표 득점</th>
-    <th>소속 국가 아이디</th>
-</tr>
-<tr th:each="players : ${ playerList }">
-    <td th:text="${ players.playerId }"></td>
-    <td th:text="${ players.playerName }"></td>
-    <td th:text="${ players.position }"></td>
-    <td th:text="${ players.age }"></td>
-    <td th:text="${ players.club }"></td>
-    <td th:text="${ players.caps }"></td>
-    <td th:text="${ players.goals }"></td>
-    <td th:text="${ players.countryId }"></td>
-</tr>
+    <tr>
+        <th>선수번호</th>
+        <th>선수이름</th>
+        <th>선수포지션</th>
+        <th>선수나이</th>
+        <th>선수 소속 팀</th>
+        <th>국가대표 출전 경기수</th>
+        <th>국가대표 득점</th>
+        <th>소속 국가 아이디</th>
+    </tr>
+    <tr th:each="players : ${ playerList }">
+        <td th:text="${ players.playerId }"></td>
+        <td th:text="${ players.playerName }"></td>
+        <td th:text="${ players.position }"></td>
+        <td th:text="${ players.age }"></td>
+        <td th:text="${ players.club }"></td>
+        <td th:text="${ players.caps }"></td>
+        <td th:text="${ players.goals }"></td>
+        <td th:text="${ players.countryId }"></td>
+    </tr>
 </table>
+<a href="/">메인으로 이동</a>
 </body>
 </html>

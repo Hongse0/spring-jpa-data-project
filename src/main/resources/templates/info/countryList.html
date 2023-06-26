@@ -1,10 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>등록 국가 리스트</title>
+  <meta charset="UTF-8">
+  <title>등록 국가 리스트</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
+<a href="/"><h1>선수 관리 프로그램</h1></a>
 <table>
   <tr>
     <th>국가 아이디</th>
@@ -17,5 +58,6 @@
     <td th:text="${ country.continent }"></td>
   </tr>
 </table>
+<a href="/">메인으로 이동</a>
 </body>
 </html>

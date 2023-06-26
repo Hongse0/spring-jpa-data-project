@@ -3,8 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>전체 선수 목록</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #paging {
+            margin-bottom: 20px;
+        }
+
+        #paging button {
+            display: inline-block;
+            width: 40px;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #paging button:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+
+        #paging button:hover:not([disabled]) {
+            background-color: #45a049;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
+<a href="/"><h1>선수 관리 프로그램</h1></a>
 <table>
     <tr>
         <th>선수번호</th>
@@ -27,35 +97,24 @@
         <td th:text="${ players.countryId }"></td>
     </tr>
 </table>
-<div id="paging" >
+<div id="paging">
     <!-- 맨 앞으로 이동 -->
-    <button
-            th:onclick="'location.href=\'/info/allplayer?page=' + @{${paging.startPage}} + '\''">
-        <<</button>
+    <button th:onclick="'location.href=\'/info/allplayer?page=' + @{${paging.startPage}} + '\''">&lt;&lt;</button>
     <!-- 이전 페이지로 이동 -->
-    <button
-            th:onclick="'location.href=\'/info/allplayer?page=' + @{${paging.currentPage - 1}} + '\''"
-            th:disabled="${ playerList.first }">
-        <
-    </button>
+    <button th:onclick="'location.href=\'/info/allplayer?page=' + @{${paging.currentPage - 1}} + '\''"
+            th:disabled="${ playerList.first }">&lt;</button>
     <!-- 숫자 버튼 -->
     <th:block th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">
         <button th:onclick="'location.href=\'/info/allplayer?page=' + @{${page}} + '\''"
                 th:text="${ page }"
-                th:disabled="${ paging.currentPage eq page }">
-        </button>
+                th:disabled="${ paging.currentPage eq page }"></button>
     </th:block>
     <!-- 다음 페이지로 이동 -->
-    <button
-            th:onclick="'location.href=\'/info/allplayer?page=' + @{${paging.currentPage + 1}} + '\''"
-            th:disabled="${ playerList.last }">
-        >
-    </button>
+    <button th:onclick="'location.href=\'/info/allplayer?page=' + @{${paging.currentPage + 1}} + '\''"
+            th:disabled="${ playerList.last }">&gt;</button>
     <!-- 맨 끝으로 이동 -->
-    <button
-            th:onclick="'location.href=\'/info/allplayer?page=' + @{${paging.endPage}} + '\''">
-        >>
-    </button>
+    <button th:onclick="'location.href=\'/info/allplayer?page=' + @{${paging.endPage}} + '\''">&gt;&gt;</button>
 </div>
+<a href="/">메인으로 이동</a>
 </body>
 </html>
